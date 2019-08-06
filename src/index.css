@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 /* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
   License: none (public domain)
 */
@@ -61,7 +62,6 @@ a {
 	text-decoration: none;
 }
 a:hover {
-  /* color: #fa6500; */
   transition: all .15s ease-in-out ;
   -webkit-transition: all .15s ease-in-out ;
   -moz-transition: all .15s ease-in-out ;
@@ -73,4 +73,95 @@ button, a {
 	cursor: pointer;
 }
 
-/* Main CSS */
+/**** Main CSS *******/
+
+body {
+  background: #fff;
+  font-family: "roboto", sans-serif;
+  line-height: 1.5;
+  letter-spacing: 0.25px;
+  font-size: 1.3rem;
+}
+
+.isWrapper {
+  max-width: 950px;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+
+.table-head {
+	color: #002e43;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.isEditBtn {
+	color:  #30ba67;
+	cursor: pointer;
+}
+.isEditBtn:hover {
+  color: #FC4445;
+  transition: all  .15s ease-in-out;
+  -webkit-transition: all  .15s ease-in-out;
+  -moz-transition: all  .15s ease-in-out;
+  -ms-transition: all  .15s ease-in-out;
+  -o-transition: all  .15s ease-in-out;
+}
+
+td, th {
+  border: 1px solid rgb(161, 161, 248);
+  text-align: center;
+	padding: 8px 1px;
+}
+
+tbody tr:nth-child(even) {
+	color: #012e41;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #fefefe;
+	color: #002e41;
+}
+
+
+
+
+/* styles for input */
+input[type="text"], input[type="number"], select {
+	outline: none;
+  height: 2rem;
+  width: 98%;
+	border: 1px solid #999;
+	border-radius: 2px;
+  padding: 3px 4px;
+  font-size: 1.5rem;
+  padding-left: 12px;
+}
+.isSubmitWrapper {
+	position: absolute;
+	left: 80%;
+	top: 87%;
+	transform: translate(-80%,-87%);
+	-webkit-transform: translate(-80%,-87%);
+	-moz-transform: translate(-80%,-87%);
+	-ms-transform: translate(-80%,-87%);
+	-o-transform: translate(-80%,-87%);
+}
+
+.isSubmitBtn {
+	background-color: #0085ba;
+  color: white;
+  cursor: pointer;
+	box-shadow: 0 1px 2px rgb(0,103,153);
+	border-color: #016b9c;
+	border: 0;
+	padding: 10px 60px;
+	border-radius: 4px;
+	font-size: 16px;
+  height: 1.95rem;
+}
