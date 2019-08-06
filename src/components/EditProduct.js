@@ -1,47 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { editProduct } from '../actions';
 
 class EditProduct extends Component {
-
 	state = {
-		name: '',
+		name: '',	
 		weight: '',
 		availability: '',
 		productUrl: '',
 		pricingTier: '',
 		priceRange: '',
-		isEditable: false
+		isEditable: true
 	}
 
+	componentDidMount() {
+		const id = this.props.location.id;
+		const product = this.props.productsInfo.products[id];
+		if(typeof id === "number"){
+			this.setState({...this.state, ...product});
+		}
+	}
+	
 	handleChange = ({ target: { value, name } }) => {
 		this.setState({
 			[name]: value
 		})
 	}
 
-	handleEditable = () => {
+	handleEditable = ({ target: { value, name } }) => {		
 		this.setState({
 			isEditable: !this.state.isEditable
 		})
 	}
 
-
 	handleSubmit = () => {
 		const { id } = this.props.location;
     const data = { ...this.state, id };
-		this.props.dispatch({type:"EDIT_PRODUCT",  data});
+		this.props.dispatch(editProduct(data));
     this.props.history.push('/');
 	}
+	
 
 	render() {
-
-		const { priceInfo } = this.props;
-		const { name, weight, productUrl, pricingTier, priceRange } = this.state;
-    const prices = pricingTier ? priceInfo[pricingTier] : '';
-
+		const { name, weight, productUrl, pricingTier, priceRange, isEditable } = this.state;
+    const prices = this.props.productsInfo.priceInfo[this.state.pricingTier];
+		console.log(isEditable,"checking radio")
 		return (
-			<>
-				<table className="isWrapper">
+			<div className ="isWrapper">
+				<table className="isTable">
 					<thead>
 						<tr className="table-head">
 							<th>FieldName</th>
@@ -77,11 +83,11 @@ class EditProduct extends Component {
 							<td>Price Tier</td>
 							<td>
 								<label htmlFor="budget">
-									<input type="radio" name="pricingTier" value="budget" id="" onChange={this.handleChange}/>
+									<input type="radio" name="pricingTier" checked={this.state.pricingTier === "budget"} value="budget"  onChange={this.handleChange}/>
 									budget
 								</label>
-								<label htmlFor="">
-									<input type="radio" name="pricingTier" value="premier" id="" onChange={this.handleChange}/>
+								<label htmlFor="premier">
+									<input type="radio" name="pricingTier" checked={this.state.pricingTier === "premier"} value="premier" onChange={this.handleChange}/>
 									premier
 								</label>
 							</td>
@@ -89,7 +95,7 @@ class EditProduct extends Component {
 						<tr>
 							<td>Price Range</td>
 							<td>
-								<select name="priceRange" id="" onChange={this.handleChange}>
+								<select name="priceRange" onChange={this.handleChange}>
 									<option>Select Price</option>
 									{
 										prices ? prices.map((price, index) => {
@@ -104,26 +110,29 @@ class EditProduct extends Component {
 						<tr>
 							<td>isEditable</td>
 							<td>
-								<input type="checkbox" name="isEditable" id="" onChange={this.handleEditable} />
+								<label htmlFor="isEditableTrue">
+									<input type="radio" name="isEditable" checked={isEditable} value={isEditable} onChange={this.handleEditable}/>
+									True
+								</label>
+								<label htmlFor="isEditableFalse">
+									<input type="radio" name="isEditable" checked={isEditable ? false : true} onChange={this.handleEditable}/>
+									False
+								</label>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<div className="isSubmitWrapper">
+				<div className="isBtnWrapper">
 					{
 						name && weight && productUrl && pricingTier && priceRange ? 
 						<button  className="isSubmitBtn" onClick={this.handleSubmit}>Submit</button> : ""
 					}
 				</div>
-			</>
+			</div>
 		);
 	}
 }
 
-function mapStateToProps(state){
-	return {
-		priceInfo: state.products.priceInfo
-	}
-}
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(EditProduct);

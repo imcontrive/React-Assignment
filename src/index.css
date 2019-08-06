@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 /* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
   License: none (public domain)
 */
@@ -61,19 +62,13 @@ a {
   color: #002e43;
 	text-decoration: none;
 }
-a:hover {
-  transition: all .15s ease-in-out ;
-  -webkit-transition: all .15s ease-in-out ;
-  -moz-transition: all .15s ease-in-out ;
-  -ms-transition: all .15s ease-in-out ;
-  -o-transition: all .15s ease-in-out ;
-}
-
 button, a {
 	cursor: pointer;
 }
 
 /**** Main CSS *******/
+
+
 
 body {
   background: #fff;
@@ -142,15 +137,15 @@ input[type="text"], input[type="number"], select {
   font-size: 1.5rem;
   padding-left: 12px;
 }
-.isSubmitWrapper {
-	position: absolute;
-	left: 80%;
-	top: 87%;
-	transform: translate(-80%,-87%);
-	-webkit-transform: translate(-80%,-87%);
-	-moz-transform: translate(-80%,-87%);
-	-ms-transform: translate(-80%,-87%);
-	-o-transform: translate(-80%,-87%);
+
+.isTable {
+  width: 100%;
+}
+
+.isBtnWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 2rem;
 }
 
 .isSubmitBtn {
@@ -164,4 +159,14 @@ input[type="text"], input[type="number"], select {
 	border-radius: 4px;
 	font-size: 16px;
   height: 1.95rem;
+}
+
+.isSubmitBtn:hover {
+  background: #FC4445;
+  color:#fff;
+  transition: all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -ms-transition: all .25s ease-in-out;
+  -o-transition: all .25s ease-in-out;
 }

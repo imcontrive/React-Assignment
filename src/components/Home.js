@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 
 
 class Home extends Component {
-
-  // componentDidMount() {
-  //   // this.props.dispatch({type:"ALL_PRODUCTS",  payload: products});
-  // }
-
   editHandler = (id) => {
 		this.props.history.push({
 			pathname: '/edit-product',
@@ -16,7 +11,7 @@ class Home extends Component {
 	}
 	
   render() {
-    const { products } = this.props.products;
+    const { products } = this.props.productsInfo;
 
     return (
         <table className="isWrapper">
@@ -46,9 +41,8 @@ class Home extends Component {
 }
 
 function  mapStateToProps(state){
-  // console.log(state,'in home')
 	return {
-		products: state.products
+		productsInfo: state.productsInfo
 	}
 }
 
